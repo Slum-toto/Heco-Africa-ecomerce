@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Payment Successful — Slumtotos</title><link rel="stylesheet" href="style.css"></head><body>
+  <main class="success-wrap">
+    <h1>Payment Successful!</h1>
+    <p id="thanks">Thank you!</p>
+    <section class="order-details">
+      <h3>Order Summary</h3>
+      <ul id="order-items" class="order-list"></ul>
+      <p><strong>Total Paid:</strong> <span id="order-total">KES 0</span></p>
+      <p><small id="order-time"></small></p>
+      <div style="margin-top:12px"><a href="index.html" class="checkout-btn" id="continue-btn">Continue Shopping</a></div>
+    </section>
+  </main>
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  const order = JSON.parse(localStorage.getItem('st_last_order') || 'null');
+  if(!order){ document.getElementById('thanks').textContent = 'No recent order found.'; return; }
+  document.getElementById('thanks').textContent = 'Thank you, ' + (order.customer.name || 'Customer') + '!';
+  const list = document.getElementById('order-items');
+  list.innerHTML = '';
+  order.items.forEach(it => {
+    const li = document.createElement('li');
+    li.className = 'order-item';
+    li.innerHTML = '<span>' + it.name + ' x ' + (it.quantity||1) + '</span><span>KES ' + ((it.price||0)*(it.quantity||1)).toFixed(0) + '</span>';
+    list.appendChild(li);
+  });
+  document.getElementById('order-total').textContent = 'KES ' + (order.total || 0).toFixed(0);
+  document.getElementById('order-time').textContent = 'Paid on: ' + (new Date(order.paidAt)).toLocaleString();
+});
+</script>
+</body></html>

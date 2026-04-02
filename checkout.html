@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>HECO Africa Payment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0d0d0f 0%, #1a0a2e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* POPUP BUTTONS */
+        .popup-buttons {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 300px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .popup-btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        .mpesa-btn {
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            animation: slideIn 0.5s ease 0.1s both;
+        }
+        
+        .pesapal-btn {
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            color: white;
+            animation: slideIn 0.5s ease 0.3s both;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            animation: slideIn 0.5s ease 0.5s both;
+        }
+        
+        /* PAYMENT CONTAINER */
+        .payment-container {
+            background: rgba(26, 26, 28, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 0, 128, 0.3);
+            backdrop-filter: blur(20px);
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        /* CART SUMMARY */
+        .cart-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 0, 128, 0.3);
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-details {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* PESAPAL EMBED CONTAINER */
+        .pesapal-embed-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            text-align: center;
+        }
+        
+        .logo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .logo-header p {
+            color: #999;
+            font-size: 1.1rem;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section h3 {
+            color: #ff0080;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ff0080;
+            box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.2);
+        }
+        
+        .amount-section {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(121, 40, 202, 0.1));
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+        }
+        
+        #amount {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff0080, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 10px 0;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .payment-btn {
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .splash-btn {
+            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            color: white;
+            margin-top: 15px;
+        }
+        
+        /* WhatsApp Chat */
+        .whatsapp-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        
+        .whatsapp-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { 
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .popup-buttons {
+                min-width: 90%;
+            }
+            
+            .popup-btn {
+                padding: 18px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .payment-container {
+                padding: 25px;
+            }
+            
+            #amount {
+                font-size: 2.5rem;
+            }
+            
+            .whatsapp-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- POPUP BUTTONS (SHOWS FIRST) -->
+    <div class="popup-buttons" id="popupButtons">
+        <button class="popup-btn mpesa-btn" onclick="selectPayment('mpesa')">
+            <span>📱</span> PAY WITH M-PESA
+        </button>
+        
+        <button class="popup-btn pesapal-btn" onclick="selectPayment('pesapal')">
+            <span>💳</span> PAY WITH PESAPAL
+        </button>
+        
+        <button class="popup-btn whatsapp-btn" onclick="selectPayment('whatsapp')">
+            <span>💬</span> CHAT ON WHATSAPP
+        </button>
+    </div>
+    
+    <!-- PAYMENT CONTAINER -->
+    <div class="payment-container" id="paymentContainer">
+        <div class="logo-header">
+            <h1>HECO AFRICA</h1>
+            <p>Secure Payment Gateway</p>
+        </div>
+        
+        <!-- CART SUMMARY -->
+        <div class="cart-summary" id="cartSummary">
+            <h3>Your Cart Items</h3>
+            <div id="cartItemsList">
+                <!-- Cart items will be loaded here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Contact Information</h3>
+            <label for="cust-name">Full Name</label>
+            <input type="text" id="cust-name" placeholder="Enter your full name" required>
+            
+            <label for="cust-email">Email Address</label>
+            <input type="email" id="cust-email" placeholder="your@email.com" required>
+            
+            <label for="cust-phone">Phone Number</label>
+            <input type="tel" id="cust-phone" placeholder="0705 379 295" required>
+        </div>
+        
+        <div class="amount-section">
+            <h3>Payment Amount</h3>
+            <div id="amount">KES 0</div>
+            <p>Total amount from your cart</p>
+        </div>
+        
+        <div class="payment-methods">
+            <button class="payment-btn mpesa-btn" onclick="processMpesaPayment()">
+                <span>📱</span> Pay with M-Pesa
+            </button>
+            
+            <button class="payment-btn pesapal-btn" onclick="showPesaPalEmbed()">
+                <span>💳</span> Pay with PesaPal
+            </button>
+        </div>
+        
+        <!-- PesaPal Embed Container -->
+        <div class="pesapal-embed-container" id="pesapalEmbed">
+            <h3 style="color: #333; margin-bottom: 15px;">PesaPal Secure Payment</h3>
+            <iframe width="100%" height="500" 
+                    src="https://store.pesapal.com/embed-code?pageUrl=https://store.pesapal.com/hecoafrica" 
+                    frameborder="0" 
+                    allowfullscreen>
+            </iframe>
+            <p style="color: #666; margin-top: 10px; font-size: 0.9rem;">
+                Complete your payment in the secure PesaPal window above
+            </p>
+        </div>
+        
+        <button class="payment-btn back-btn" onclick="goBackToPopup()">
+            <span>←</span> Back to Options
+        </button>
+        
+        <button class="payment-btn splash-btn" onclick="goToSplash()">
+            <span>🏠</span> Back to Shop
+        </button>
+        
+        <div class="footer">
+            <p>© 2024 HECO AFRICA • Secure & Encrypted Payments</p>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-chat" id="whatsappChat" style="display: none;">
+        <div class="whatsapp-icon" onclick="openWhatsAppWithCart()">
+            💬
+        </div>
+    </div>
+
+    <script>
+        let selectedMethod = '';
+        let cartItems = [];
+        let totalAmount = 0;
+        
+        // Load cart from localStorage
+        function loadCartFromStorage() {
+            try {
+                const savedCart = localStorage.getItem('st_cart');
+                if (savedCart) {
+                    cartItems = JSON.parse(savedCart);
+                    displayCartItems();
+                    calculateTotal();
+                } else {
+                    showEmptyCart();
+                }
+            } catch (error) {
+                console.error('Error loading cart:', error);
+                showEmptyCart();
+            }
+        }
+        
+        // Display cart items
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            cartItemsList.innerHTML = '';
+            
+            if (cartItems.length === 0) {
+                showEmptyCart();
+                return;
+            }
+            
+            cartItems.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                
+                cartItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image" onerror="this.src='https://via.placeholder.com/60x60?text=Product'">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-details">
+                            KES ${item.price} × ${item.quantity} = KES ${item.price * item.quantity}
+                        </div>
+                    </div>
+                `;
+                
+                cartItemsList.appendChild(cartItemDiv);
+            });
+        }
+        
+        // Show empty cart message
+        function showEmptyCart() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            cartItemsList.innerHTML = `
+                <div style="text-align: center; padding: 30px; color: #aaa;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🛒</div>
+                    <p>Your cart is empty</p>
+                    <button class="payment-btn splash-btn" onclick="goToSplash()" style="margin-top: 15px;">
+                        <span>🛍️</span> Go Shopping
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Calculate total amount
+        function calculateTotal() {
+            totalAmount = cartItems.reduce((total, item) => {
+                return total + (item.price * item.quantity);
+            }, 0);
+            
+            document.getElementById('amount').textContent = `KES ${totalAmount}`;
+            document.getElementById('amount-input').value = totalAmount;
+            
+            // If cart is empty, disable payment buttons
+            const paymentButtons = document.querySelectorAll('.payment-btn:not(.back-btn):not(.splash-btn)');
+            if (cartItems.length === 0) {
+                paymentButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+            } else {
+                paymentButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+            }
+        }
+        
+        // Show popup buttons when page loads
+        window.onload = function() {
+            loadCartFromStorage();
+            document.getElementById('popupButtons').style.display = 'flex';
+        };
+        
+        // Handle payment method selection
+        function selectPayment(method) {
+            selectedMethod = method;
+            
+            if (method === 'whatsapp') {
+                if (cartItems.length === 0) {
+                    alert('Your cart is empty. Please add items to your cart first.');
+                    goToSplash();
+                    return;
+                }
+                openWhatsAppWithCart();
+                return;
+            }
+            
+            // Hide popup buttons
+            document.getElementById('popupButtons').classList.add('fade-out');
+            
+            // Show payment container after animation
+            setTimeout(() => {
+                document.getElementById('popupButtons').style.display = 'none';
+                document.getElementById('popupButtons').classList.remove('fade-out');
+                document.getElementById('paymentContainer').style.display = 'block';
+                document.getElementById('whatsappChat').style.display = 'block';
+                
+                // Show method-specific message
+                if (method === 'mpesa') {
+                    alert('Selected: M-PESA Payment\nFill in your details below');
+                } else if (method === 'pesapal') {
+                    alert('Selected: PESAPAL Payment\nFill in your details below');
+                }
+                
+                // Focus on first input
+                document.getElementById('cust-name').focus();
+            }, 300);
+        }
+        
+        // Go back to popup buttons
+        function goBackToPopup() {
+            document.getElementById('paymentContainer').style.display = 'none';
+            document.getElementById('whatsappChat').style.display = 'none';
+            document.getElementById('pesapalEmbed').style.display = 'none';
+            document.getElementById('popupButtons').style.display = 'flex';
+        }
+        
+        // Go to splash.html (shop page)
+        function goToSplash() {
+            window.location.href = "splash.html";
+        }
+        
+        // Generate cart summary for messages
+        function getCartSummary() {
+            let summary = "🛒 MY ORDER SUMMARY:\n";
+            cartItems.forEach((item, index) => {
+                summary += `\n${index + 1}. ${item.name}\n`;
+                summary += `   Quantity: ${item.quantity}\n`;
+                summary += `   Price: KES ${item.price} each\n`;
+                summary += `   Subtotal: KES ${item.price * item.quantity}\n`;
+            });
+            summary += `\n💰 TOTAL: KES ${totalAmount}`;
+            return summary;
+        }
+        
+        // Generate cart summary for PesaPal/M-Pesa (without images)
+        function getCartSummarySimple() {
+            let summary = "";
+            cartItems.forEach((item, index) => {
+                summary += `${item.name} (${item.quantity} × KES ${item.price})`;
+                if (index < cartItems.length - 1) summary += ", ";
+            });
+            return summary;
+        }
+        
+        // Process M-Pesa Payment
+        function processMpesaPayment() {
+            const name = document.getElementById('cust-name').value;
+            const email = document.getElementById('cust-email').value;
+            const phone = document.getElementById('cust-phone').value;
+            
+            if (!name || !email || !phone) {
+                alert('Please fill in all contact information first');
+                return;
+            }
+            
+            if (cartItems.length === 0) {
+                alert('Your cart is empty. Please add items to your cart.');
+                return;
+            }
+            
+            // Validate phone number
+            const phoneRegex = /^(07|01)\d{8}$/;
+            const cleanPhone = phone.replace(/\s/g, '');
+            
+            if (!phoneRegex.test(cleanPhone)) {
+                alert('Please enter a valid Kenyan phone number (07xxxxxxxx or 01xxxxxxxx)');
+                return;
+            }
+            
+            // Generate reference
+            const reference = 'HECO' + Date.now().toString().slice(-6);
+            const cartSummary = getCartSummarySimple();
+            
+            // Show processing message
+            alert(`💰 M-Pesa Payment Request\n\n` +
+                  `Items: ${cartSummary}\n` +
+                  `Total: KES ${totalAmount}\n` +
+                  `Phone: ${phone}\n` +
+                  `Reference: ${reference}\n\n` +
+                  `Check your phone for STK Push prompt.`);
+            
+            // Simulate payment processing
+            console.log('M-Pesa Payment Processing:', {
+                phone: cleanPhone,
+                amount: totalAmount,
+                reference: reference,
+                items: cartItems,
+                name: name,
+                email: email
+            });
+            
+            // Show success message after delay
+            setTimeout(() => {
+                const confirmed = confirm(`✅ Did you complete the M-Pesa payment on your phone?\n\n` +
+                                        `Items: ${cartSummary}\n` +
+                                        `Total: KES ${totalAmount}\n` +
+                                        `Reference: ${reference}`);
+                
+                if (confirmed) {
+                    alert('🎉 Thank you for your payment to HECO Africa!\nA receipt has been sent to your email.');
+                    
+                    // Clear cart after successful payment
+                    localStorage.removeItem('st_cart');
+                    
+                    // Optionally redirect to splash page after successful payment
+                    setTimeout(() => {
+                        const goHome = confirm('Would you like to return to the shop?');
+                        if (goHome) {
+                            goToSplash();
+                        }
+                    }, 1000);
+                } else {
+                    alert('⚠️ Payment not completed. Please try again.');
+                }
+            }, 3000);
+        }
+        
+        // Show PesaPal Embed
+        function showPesaPalEmbed() {
+            const name = document.getElementById('cust-name').value;
+            const email = document.getElementById('cust-email').value;
+            const phone = document.getElementById('cust-phone').value;
+            
+            if (!name || !email || !phone) {
+                alert('Please fill in all contact information first');
+                return;
+            }
+            
+            if (cartItems.length === 0) {
+                alert('Your cart is empty. Please add items to your cart.');
+                return;
+            }
+            
+            // Show PesaPal embed
+            document.getElementById('pesapalEmbed').style.display = 'block';
+            document.getElementById('pesapalEmbed').scrollIntoView({ behavior: 'smooth' });
+            
+            const cartSummary = getCartSummarySimple();
+            alert('🔐 Opening PesaPal secure payment gateway...\n\n' +
+                  `Items: ${cartSummary}\n` +
+                  `Total: KES ${totalAmount}\n` +
+                  `Email: ${email}\n\n` +
+                  'Complete your payment in the window below.');
+            
+            // Store order details for PesaPal
+            const orderDetails = {
+                name: name,
+                email: email,
+                phone: phone,
+                items: cartItems,
+                total: totalAmount,
+                reference: 'HECO' + Date.now().toString().slice(-6)
+            };
+            
+            localStorage.setItem('pesapal_order', JSON.stringify(orderDetails));
+        }
+        
+        // Open WhatsApp with cart items (WITH IMAGES)
+        function openWhatsAppWithCart() {
+            const phoneNumber = "254705379295"; // Your WhatsApp number
+            const name = document.getElementById('cust-name')?.value || "Customer";
+            
+            // Build detailed WhatsApp message with cart items
+            let whatsappMessage = `Hello HECO Africa! 👋\n\n`;
+            whatsappMessage += `My name is ${name}.\n\n`;
+            whatsappMessage += `I want to purchase the following items:\n\n`;
+            
+            cartItems.forEach((item, index) => {
+                whatsappMessage += `📦 *${item.name}*\n`;
+                whatsappMessage += `   Quantity: ${item.quantity}\n`;
+                whatsappMessage += `   Price: KES ${item.price} each\n`;
+                whatsappMessage += `   Subtotal: KES ${item.price * item.quantity}\n`;
+                whatsappMessage += `   Image: ${item.image}\n\n`;
+            });
+            
+            whatsappMessage += `💰 *TOTAL AMOUNT: KES ${totalAmount}*\n\n`;
+            whatsappMessage += `Please help me complete this order. Thank you!`;
+            
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Show confirmation
+            alert('Opening WhatsApp to send your order details...\n\n' +
+                  `You are sending ${cartItems.length} item(s) from your cart.\n` +
+                  `Total: KES ${totalAmount}\n\n` +
+                  'If WhatsApp doesn\'t open, please message us at:\n' +
+                  '+254 705 379 295');
+            
+            // If coming from payment page, show option to go back
+            if (document.getElementById('paymentContainer').style.display === 'block') {
+                setTimeout(() => {
+                    const goBack = confirm('Would you like to go back to payment options?');
+                    if (goBack) {
+                        goBackToPopup();
+                    }
+                }, 2000);
+            }
+        }
+        
+        // Form validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.checkValidity()) {
+                    this.style.borderColor = '#00d4ff';
+                } else {
+                    this.style.borderColor = '#ff0080';
+                }
+            });
+        });
+        
+        // Create hidden input for amount (needed for some functions)
+        const amountInput = document.createElement('input');
+        amountInput.type = 'hidden';
+        amountInput.id = 'amount-input';
+        amountInput.value = '0';
+        document.body.appendChild(amountInput);
+        
+        // Auto-fill phone with your WhatsApp number as placeholder
+        document.getElementById('cust-phone').placeholder = "0705 379 295";
+    </script>
+</body>
+</html>

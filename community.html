@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Sponsorship – HECO-Africa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --primary: #007bff;
+      --primary-dark: #0056cc;
+      --secondary: #ff6b35;
+      --accent: #00d4aa;
+      --dark: #121212;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --gray-light: #e9ecef;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      --border-radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: #f9fbfd;
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      width: 100%;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      padding: 14px 5%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .logo-img {
+      height: 45px;
+      width: auto;
+      transition: var(--transition);
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .projects-hero {
+      padding: 140px 5% 80px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,123,255,0.1) 0%, rgba(0,212,170,0.08) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    .projects-hero p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+      box-shadow: 0 5px 15px rgba(0,123,255,0.2);
+    }
+
+    /* ===== FOUNDER'S MESSAGE ===== */
+    .founder-section {
+      padding: 80px 5%;
+      background: white;
+      position: relative;
+    }
+
+    .founder-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .founder-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+
+    .founder-image {
+      flex: 0 0 300px;
+      text-align: center;
+    }
+
+    .founder-img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid white;
+      box-shadow: var(--shadow);
+    }
+
+    .founder-quote {
+      flex: 1;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f7ff 100%);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .founder-quote:before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 30px;
+      font-size: 8rem;
+      color: rgba(0,123,255,0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .founder-quote h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .founder-quote p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .founder-name {
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 30px;
+      font-size: 1.2rem;
+    }
+
+    .founder-title {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects-section {
+      padding: 80px 5%;
+      background: #f9fbfd;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: var(--dark);
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 4px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 30px auto 60px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* ===== SPONSORSHIP GRID ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== SPONSORSHIP CARD ===== */
+    .project-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-image-container {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .project-img.active {
+      opacity: 1;
+    }
+
+    .sponsorship-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .project-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .project-description {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* ===== TESTIMONIAL STYLES ===== */
+    .testimonial-section {
+      background: linear-gradient(135deg, rgba(0,123,255,0.05) 0%, rgba(0,212,170,0.03) 100%);
+      padding: 25px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border-left: 4px solid var(--accent);
+      position: relative;
+    }
+
+    .testimonial-section:before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 3rem;
+      color: rgba(0,123,255,0.2);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 15px;
+      padding-left: 10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .author-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .author-info p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ===== SPONSORSHIP DETAILS ===== */
+    .sponsorship-details {
+      background: linear-gradient(135deg, rgba(255,107,53,0.05) 0%, rgba(255,193,7,0.03) 100%);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      border: 1px solid rgba(255,107,53,0.1);
+    }
+
+    .sponsorship-details h4 {
+      color: var(--secondary);
+      margin-bottom: 10px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sponsorship-details h4 i {
+      font-size: 1.1rem;
+    }
+
+    .sponsorship-items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .sponsorship-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .sponsorship-item i {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .sponsor-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--secondary), #ff8c00);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .sponsor-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255,107,53,0.2);
+    }
+
+    .sponsor-btn i {
+      margin-right: 8px;
+    }
+
+    /* ===== STATS ===== */
+    .project-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* ===== CALL TO ACTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 60px 5%;
+      text-align: center;
+      border-radius: var(--border-radius);
+      margin: 60px auto;
+      max-width: 1200px;
+    }
+
+    .cta-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .cta-btn-primary {
+      background: white;
+      color: var(--primary);
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid white;
+      transition: var(--transition);
+    }
+
+    .cta-btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 5% 30px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: white;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      width: 35px;
+      height: 3px;
+      background: var(--primary);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+    }
+
+    .footer-logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo span {
+      color: var(--primary);
+    }
+
+    .footer-col p {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #888;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (min-width: 768px) {
+      .projects-hero {
+        padding: 160px 8% 100px;
+      }
+      
+      .projects-hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .founder-section {
+        padding: 100px 8%;
+      }
+      
+      .projects-section {
+        padding: 100px 8%;
+      }
+      
+      .section-title {
+        font-size: 3rem;
+      }
+      
+      .cta-section {
+        padding: 80px 8%;
+      }
+      
+      .footer-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      .footer-col {
+        flex: 1;
+        min-width: 200px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .navbar {
+        padding: 20px 10%;
+      }
+      
+      .projects-hero {
+        padding: 180px 10% 120px;
+      }
+      
+      .projects-hero h1 {
+        font-size: 4rem;
+      }
+      
+      .founder-section {
+        padding: 120px 10%;
+      }
+      
+      .projects-section {
+        padding: 120px 10%;
+      }
+      
+      .cta-section {
+        padding: 100px 10%;
+      }
+      
+      footer {
+        padding: 100px 10% 50px;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-card {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .animate-card:nth-child(1) { animation-delay: 0.1s; }
+    .animate-card:nth-child(2) { animation-delay: 0.2s; }
+    .animate-card:nth-child(3) { animation-delay: 0.3s; }
+    .animate-card:nth-child(4) { animation-delay: 0.4s; }
+    .animate-card:nth-child(5) { animation-delay: 0.5s; }
+    .animate-card:nth-child(6) { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+      <img src="images/HECO-AFRICA (3).png" alt="HECO-AFRICA" class="logo-img">
+      <span>HECO-AFRICA</span>
+    </a>
+    <div>
+      <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-right: 20px;">Home</a>
+      <a href="tour.html" style="color: var(--dark); text-decoration: none; font-weight: 600;">Tour</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="projects-hero">
+    <div class="hero-badge">Sponsorship Opportunities</div>
+    <h1>Sponsor a Child's Future</h1>
+    <p>Join us in providing essential education support to children in need. Your sponsorship covers school fees, uniforms, books, and other necessities that transform lives and break the cycle of poverty.</p>
+  </section>
+
+  <!-- ===== FOUNDER'S MESSAGE ===== -->
+  <section class="founder-section">
+    <div class="founder-container">
+      <div class="founder-image">
+        <img src="images/Dad 1.jpg" alt="Founder" class="founder-img">
+      </div>
+      <div class="founder-quote">
+        <h2>A Message From Our Founder</h2>
+        <p>"At HECO-Africa, we believe that education is the most powerful weapon to change the world. But for many children in our communities, even the most basic school requirements are out of reach. Every child deserves the opportunity to learn, grow, and dream of a better future.</p>
+        <p>Your sponsorship doesn't just pay for books and uniforms—it gives hope, restores dignity, and opens doors to opportunities these children never thought possible. Together, we can ensure that no child is left behind because of circumstances beyond their control."</p>
+        <div class="founder-name">Owino Charles Okoth</div>
+        <div class="founder-title">Founder & CEO, HECO-Africa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPONSORSHIP SECTION ===== -->
+  <section class="projects-section">
+    <h2 class="section-title">Sponsorship Programs</h2>
+    <p class="section-subtitle">Choose a sponsorship program that resonates with you. Each sponsorship provides comprehensive support to ensure children can focus on their education without worrying about basic needs.</p>
+    
+    <div class="projects-grid">
+      <!-- life transformation -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">life transformation</div>
+          <img src="images/jjjjjj.jpg" 
+               alt="Primary School Children" class="project-img active">
+          <img src="images/fashion.jpg" 
+               alt="School Uniforms" class="project-img">
+          <img src="image/playing.jpg" 
+               alt="Happy Children" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">life tranformation</h3>
+          <p class="project-description">Sponsor a primary school child's complete educational needs for one year. Give them the foundation they need to succeed academically.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"My parents couldn't afford my school fees. I was about to drop out when HECO-Africa found a sponsor for me. Now I'm first in my class and dream of becoming a Software developer now i have given back to the organisation by creating thorganisations website."</p>
+            <div class="testimonial-author">
+              <img src="images/agbada.jpg" 
+                   alt="Blessing" class="author-avatar">
+              <div class="author-info">
+                <h4>Martin Lutherking Owino, U16</h4>
+                <p>Grade 5 Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-graduation-cap"></i> What Your Sponsorship Covers:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> School Fees (Full Year)</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Complete Uniform Set</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Textbooks & Exercise Books</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> School Bag & Shoes</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Stationery Supplies</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Exam Fees</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-heart"></i> Sponsor for $250/year
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">150</span>
+              <span class="stat-label">Children</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$37.5K</span>
+              <span class="stat-label">Sponsorship</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">95%</span>
+              <span class="stat-label">Attendance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary School Sponsorship -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">Secondary</div>
+          <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Secondary Students" class="project-img active">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Science Lab" class="project-img">
+          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Study Group" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Secondary School Sponsorship</h3>
+          <p class="project-description">Support a high school student through their critical secondary education years. Help them prepare for national exams and future careers.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"After my father passed away, I thought my education was over. My HECO-Africa sponsor not only pays my fees but also encourages me through letters. I scored an A- in my mock exams!"</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                   alt="Kevin" class="author-avatar">
+              <div class="author-info">
+                <h4>Kevin, Age 16</h4>
+                <p>Form 3 Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-book-open"></i> What Your Sponsorship Covers:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Tuition & Boarding Fees</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Full School Uniforms</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> All Required Textbooks</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Science Practical Fees</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Examination & Lab Fees</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Personal Hygiene Items</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-heart"></i> Sponsor for $500/year
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">75</span>
+              <span class="stat-label">Students</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$37.5K</span>
+              <span class="stat-label">Sponsorship</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">85%</span>
+              <span class="stat-label">Pass Rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Uniform & Supplies Program -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">Uniforms</div>
+          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="School Uniforms" class="project-img active">
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="School Supplies" class="project-img">
+          <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Happy Children" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Uniform & Supplies Program</h3>
+          <p class="project-description">Provide school uniforms and essential supplies to children who would otherwise be sent home for not having proper attire.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"I used to miss school because my uniform was torn and I was ashamed. When HECO-Africa gave me a new uniform, I felt proud to go to school again. My attendance is now perfect!"</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                   alt="Faith" class="author-avatar">
+              <div class="author-info">
+                <h4>Faith, Age 12</h4>
+                <p>Grade 7 Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-tshirt"></i> What Your Donation Provides:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Complete School Uniform</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> School Sweater/Blazer</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Pair of School Shoes</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Socks & Underwear</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> School Bag & Lunch Box</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Stationery Kit</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-gift"></i> Donate $50 per child
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">300</span>
+              <span class="stat-label">Children</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$15K</span>
+              <span class="stat-label">Raised</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Attendance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- School Feeding Program -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">Nutrition</div>
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="School Lunch" class="project-img active">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Food Preparation" class="project-img">
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Healthy Food" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">School Feeding Program</h3>
+          <p class="project-description">Provide nutritious meals to children who come to school hungry. A fed child can concentrate better and perform well academically.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"I used to struggle to concentrate in class because my stomach was always empty. Now with the school lunch program, I have energy to learn. My grades have improved from D to B!"</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                   alt="Michael" class="author-avatar">
+              <div class="author-info">
+                <h4>Michael, Age 14</h4>
+                <p>Form 1 Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-utensils"></i> What Your Support Provides:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Daily Nutritious Lunch</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Morning Porridge</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Fresh Fruits & Vegetables</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Clean Drinking Water</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Cooking Fuel & Equipment</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Cooks' Salaries</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-apple-alt"></i> Feed a child for $15/month
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">500</span>
+              <span class="stat-label">Children</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$7.5K</span>
+              <span class="stat-label">Monthly</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">40%</span>
+              <span class="stat-label">Grade Improvement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orphan & Vulnerable Children -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">OVC Support</div>
+          <img src="https://images.unsplash.com/photo-1516627145497-ae695d1f7c9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Orphan Children" class="project-img active">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Care Package" class="project-img">
+          <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Support Group" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Orphan & Vulnerable Children</h3>
+          <p class="project-description">Comprehensive support for children who have lost parents or come from extremely vulnerable households.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"After both my parents died, my grandmother couldn't afford to send me to school. HECO-Africa found me a sponsor who pays for everything. I want to become a social worker to help other children like me."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                   alt="Grace" class="author-avatar">
+              <div class="author-info">
+                <h4>Grace, Age 15</h4>
+                <p>Orphan & Form 2 Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-hands-helping"></i> Comprehensive Support Includes:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Full School Sponsorship</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Medical Care & Insurance</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Counseling & Mentoring</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Holiday Care Packages</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Guardian Support</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Career Guidance</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-hand-holding-heart"></i> Support for $600/year
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">50</span>
+              <span class="stat-label">OVC Children</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$30K</span>
+              <span class="stat-label">Annual Support</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">School Retention</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Education Fund -->
+      <div class="project-card animate-card">
+        <div class="project-image-container">
+          <div class="sponsorship-badge">Emergency</div>
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Emergency Help" class="project-img active">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Student in Need" class="project-img">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+               alt="Support" class="project-img">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Emergency Education Fund</h3>
+          <p class="project-description">Immediate support for children facing sudden crises that threaten their education - medical emergencies, family loss, or displacement.</p>
+          
+          <div class="testimonial-section">
+            <p class="testimonial-text">"When our house burned down, I lost all my school books and uniform. I thought I would have to drop out, but HECO-Africa's emergency fund replaced everything within a week. I didn't miss a single day of school."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                   alt="Sophia" class="author-avatar">
+              <div class="author-info">
+                <h4>Sophia, Age 13</h4>
+                <p>Emergency Fund Beneficiary</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sponsorship-details">
+            <h4><i class="fas fa-first-aid"></i> Emergency Support Covers:</h4>
+            <div class="sponsorship-items">
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Immediate School Fee Payment</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Replacement of Lost Items</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Emergency Medical Bills</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Temporary Accommodation</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Psychological Support</div>
+              <div class="sponsorship-item"><i class="fas fa-check-circle"></i> Transport to School</div>
+            </div>
+          </div>
+          
+          <a href="#" class="sponsor-btn">
+            <i class="fas fa-life-ring"></i> Contribute to Emergency Fund
+          </a>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">45</span>
+              <span class="stat-label">Emergencies</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">$22.5K</span>
+              <span class="stat-label">Emergency Aid</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Children Stayed in School</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CALL TO ACTION ===== -->
+  <section class="cta-section">
+    <h2 class="cta-title">Transform a Life Through Education</h2>
+    <p class="cta-text">Your sponsorship not only changes one child's life but creates a ripple effect that benefits families, communities, and future generations. Every child deserves the chance to learn and dream.</p>
+    
+    <div class="project-stats" style="justify-content: center; border-top: none; gap: 40px; color: white; margin: 30px 0;">
+      <div class="stat">
+        <span class="stat-value" style="color: white;">720</span>
+        <span class="stat-label" style="color: rgba(255,255,255,0.8);">Children Sponsored</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" style="color: white;">$150K+</span>
+        <span class="stat-label" style="color: rgba(255,255,255,0.8);">Education Investment</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" style="color: white;">98%</span>
+        <span class="stat-label" style="color: rgba(255,255,255,0.8);">School Retention</span>
+      </div>
+    </div>
+    
+    <div class="cta-buttons">
+      <a href="tel:+254705379295" class="cta-btn-primary">
+        <i class="fas fa-phone"></i> Call to Sponsor: +254 705 379 295
+      </a>
+      <a href="https://wa.me/254705379295?text=I%20want%20to%20sponsor%20a%20child's%20education%20through%20HECO-Africa" 
+         class="cta-btn-secondary" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp for Sponsorship
+      </a>
+    </div>
+    
+    <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+      <i class="fas fa-envelope"></i> Email for sponsorship: theobasanjogolding@gmail.com | hecoafrica@gmail.com
+    </p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="footer-logo">HECO-<span>AFRICA</span></div>
+        <p>Heat of Compassion. Empowering African youth through education sponsorship and community transformation.</p>
+        <div class="social-links">
+          <a href="https://wa.me/254705379295" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/heco_africa/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61583885138224" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/HecoAfrica" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+          <li><i class="fas fa-phone"></i> +254 705 379 295</li>
+          <li><i class="fas fa-envelope"></i> theobasanjogolding@gmail.com</li>
+          <li><i class="fas fa-envelope"></i> hecoafrica@gmail.com</li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="tour.html">Slum Tour</a></li>
+          <li><a href="projects.html">Sponsorship Programs</a></li>
+          <li><a href="splash.html">Our Shop</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 HECO-AFRICA – With the heart of compassion. All rights reserved.<br>
+      <small>Registration Number: NGO/OP.218/051/XXXX-XXXXX</small>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Project image carousel functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      // Initialize image rotation for each project card
+      projectCards.forEach((card, cardIndex) => {
+        const images = card.querySelectorAll('.project-img');
+        let currentImageIndex = 0;
+        
+        // Function to rotate images
+        function rotateImages() {
+          // Hide all images
+          images.forEach(img => img.classList.remove('active'));
+          
+          // Show next image
+          images[currentImageIndex].classList.add('active');
+          
+          // Update index for next rotation
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+        
+        // Start rotation for this card (10 seconds interval)
+        setInterval(rotateImages, 10000);
+      });
+      
+      // Animate cards on scroll
+      function animateCardsOnScroll() {
+        const cards = document.querySelectorAll('.animate-card');
+        const windowHeight = window.innerHeight;
+        
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const isVisible = rect.top <= windowHeight - 100;
+          
+          if (isVisible) {
+            card.style.animationPlayState = 'running';
+          }
+        });
+      }
+      
+      // Trigger card animation on scroll
+      window.addEventListener('scroll', animateCardsOnScroll);
+      animateCardsOnScroll(); // Initial check
+      
+      // Sponsor button click handlers
+      document.querySelectorAll('.sponsor-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const programName = this.closest('.project-card').querySelector('.project-title').textContent;
+          const amount = this.textContent.match(/\$\d+/)[0];
+          
+          // Create WhatsApp message
+          const message = `Hello HECO-Africa! I'm interested in sponsoring the ${programName} program (${amount}). Please provide me with more information on how to proceed.`;
+          const encodedMessage = encodeURIComponent(message);
+          
+          // Open WhatsApp
+          window.open(`https://wa.me/254705379295?text=${encodedMessage}`, '_blank');
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
+
